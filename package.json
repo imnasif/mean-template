@@ -3,7 +3,6 @@
   "version": "0.0.0",
   "description": "Simple Todo application using MEAN.",
   "author": "Nasif Ahmed",
-  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
