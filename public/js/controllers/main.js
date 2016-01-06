@@ -14,7 +14,7 @@ angular.module('todoController', [])
             if ($scope.formData.text != undefined) {
                 $scope.loading = true;
 
-                Todos.create($scope.formData)
+                Todos.add($scope.formData)
 
                     .success(function (data) {
                         $scope.loading = false;
@@ -27,7 +27,7 @@ angular.module('todoController', [])
         $scope.deleteTodo = function (id) {
             $scope.loading = true;
 
-            Todos.delete(id)
+            Todos.remove(id)
                 .success(function (data) {
                     $scope.loading = false;
                     $scope.todos = data;
