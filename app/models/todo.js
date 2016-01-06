@@ -5,6 +5,10 @@ module.exports = mongoose.model(
         text: {
             type: String,
             default: ''
+        },
+        done: {
+            type: Boolean,
+            default: false
         }
     }
 );
