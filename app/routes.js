@@ -1,47 +1,43 @@
 var Todo = require('./models/todo');
 
 function getTodos(res) {
-    Todo.find(function (err, todos) {
-
+    Todo.find((err, todos) => {
         if (err)
             res.send(err);
-
         res.json(todos);
     });
 }
 
-module.exports = function (app) {
+module.exports = app => {
 
-    app.get('/api/todos', function (req, res) {
+    app.get('/api/todos', (req, res) => {
         getTodos(res);
     });
 
-    app.post('/api/todos', function (req, res) {
+    app.post('/api/todos', (req, res) => {
 
         Todo.create({
             text: req.body.text,
             done: false
-        }, function (err, todo) {
+        }, (err, todo) => {
             if (err)
                 res.send(err);
-
             getTodos(res);
         });
 
     });
 
-    app.delete('/api/todos/:todo_id', function (req, res) {
+    app.delete('/api/todos/:todo_id', (req, res) => {
         Todo.remove({
             _id: req.params.todo_id
-        }, function (err, todo) {
+        }, (err, todo) => {
             if (err)
                 res.send(err);
-
             getTodos(res);
         });
     });
 
-    app.get('*', function (req, res) {
+    app.get('*', (req, res) => {
         res.sendfile('./public/index.html');
     });
 };

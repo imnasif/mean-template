@@ -1,14 +1,13 @@
 angular.module('todoService', [])
-
-    .factory('Todos', ['$http', function ($http) {
+    .factory('Todos', ['$http', $http => {
 
         return {
 
             get: ()  => $http.get('/api/todos'),
 
-            add: (todoData) => $http.post('/api/todos', todoData),
+            add: todoData => $http.post('/api/todos', todoData),
 
-            remove: (id) => $http.delete('/api/todos/' + id)
+            remove: id => $http.delete('/api/todos/' + id)
         }
 
     }]);

@@ -1,22 +1,20 @@
 angular.module('todoController', [])
+    .controller('mainController', ['$scope', '$http', 'Todos', ($scope, $http, Todos) => {
 
-    .controller('mainController', ['$scope', '$http', 'Todos', function ($scope, $http, Todos) {
         $scope.formData = {};
         $scope.loading = true;
 
         Todos.get()
-            .success(function (data) {
+            .success(data => {
                 $scope.todos = data;
                 $scope.loading = false;
             });
 
-        $scope.createTodo = function () {
+        $scope.createTodo = () => {
             if ($scope.formData.text != undefined) {
                 $scope.loading = true;
-
                 Todos.add($scope.formData)
-
-                    .success(function (data) {
+                    .success(data => {
                         $scope.loading = false;
                         $scope.formData = {};
                         $scope.todos = data;
@@ -24,11 +22,10 @@ angular.module('todoController', [])
             }
         };
 
-        $scope.deleteTodo = function (id) {
+        $scope.deleteTodo = id => {
             $scope.loading = true;
-
             Todos.remove(id)
-                .success(function (data) {
+                .success(data => {
                     $scope.loading = false;
                     $scope.todos = data;
                 });
